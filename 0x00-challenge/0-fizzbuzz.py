@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-A module containing a python implementation of fizzbuzz
-
+""" FizzBuzz
 """
 import sys
 
@@ -19,11 +17,11 @@ def fizzbuzz(n):
 
     tmp_result = []
     for i in range(1, n + 1):
-        if (i % 3) == 0 and (i % 5) != 0:
-            tmp_result.append("Fizz")
-        elif (i % 3) == 0 and (i % 5) == 0:
+        if (i % 3) == 0 and (i % 5) == 0:
             tmp_result.append("FizzBuzz")
-        elif (i % 5) == 0 and (i % 3) != 0:
+        elif (i % 3) == 0:
+            tmp_result.append("Fizz")
+        elif (i % 5) == 0:
             tmp_result.append("Buzz")
         else:
             tmp_result.append(str(i))
@@ -31,11 +29,18 @@ def fizzbuzz(n):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) <= 1:
-        print("Missing number")
-        print("Usage: ./0-fizzbuzz.py <number>")
-        print("Example: ./0-fizzbuzz.py 89")
+    if len(sys.argv) != 2:
+        print("Usage: ./script_name.py <number>")
+        print("Example: ./script_name.py 89")
         sys.exit(1)
 
-    number = int(sys.argv[1])
+    try:
+        number = int(sys.argv[1])
+        if number < 1:
+            print("Please provide a positive integer.")
+            sys.exit(1)
+    except ValueError:
+        print("Invalid input. Please provide a positive integer.")
+        sys.exit(1)
+
     fizzbuzz(number)
